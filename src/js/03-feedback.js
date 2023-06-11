@@ -10,8 +10,13 @@ form.addEventListener('input', throttle(onInputData, 500));
 function onFormSubmit(event){
   event.preventDefault();
   const {email, message} = event.currentTarget.elements;
-  const emailMsg = `Email: ${email.value}, Message: ${message.value}`
-  console.log(emailMsg);
+ // const emailMsg = `Email: ${email.value}, Message: ${message.value}`
+  const userData = {
+    email: email.value,
+    message: message.value
+  }
+ // console.log(emailMsg)
+  console.log(userData);
   localStorage.removeItem(STORAGE_KEY);
   event.currentTarget.reset();
 }
@@ -24,11 +29,8 @@ function onInputData(event){
     email: email.value,
     message: message.value,
   };
-
-
   data[event.target.name] = event.target.value.trim();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  console.log(data);
 }
 
 function populateFeedback() {
